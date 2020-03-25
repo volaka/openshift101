@@ -8,17 +8,11 @@
 
 ### Workshop
 
-* [Exercise 1: Deploy a Node application with Source-to-Image](exercise-01/README.md)
+* [Exercise 1: Deploy a Node application with Build Config (CLI version)](exercise-01/README.md)
 * [Exercise 2: Logging and monitoring](exercise-02/README.md)
 * [Exercise 3: Metrics and dashboards](exercise-03/README.md)
 * [Exercise 4: Scaling the application](exercise-04/README.md)
 * [Exercise 5: Health checks](exercise-05/README.md)
-* [Exercise 6: Deploy a Node application with Build Config (CLI version)](exercise-06/README.md)
-
-### Alternates
-
-* [Exercise 1: Deploy a Java application with a Docker Image](exercise-01b/README.md)
-* [Exercise 6: Deploy a Java application with Build Config (CLI version)](exercise-06b/README.md)
 
 ### Resources
 
