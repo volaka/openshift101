@@ -6,16 +6,15 @@ In this exercise, we'll leverage the metrics we've observed in the previous step
 
 Before we can setup autoscaling for our pods, we first need to set resource limits on the pods running in our cluster. Limits allows you to choose the minimum and maximum CPU and memory usage for a pod.
 
-Hopefully you have your running script simulating load \(if not go [here](../exercise-02#simulate-load-on-the-application)\), Grafana showed you that your application was consuming anywhere between ".002" to ".02" cores. This translates to 2-20 "millicores".
-That seems like a good range for our CPU request, but to be safe, let's bump the higher-end up to 30 millicores. In addition, Grafana showed that the app consumes about `25`-`35` MB of RAM. Set the following resource limits for your deployment now.
+Hopefully you have your running script simulating load \(if not go [here](https://github.com/volaka/openshift101/tree/ddf989dfb9e05c279d6e35df771d4650951d6604/workshop/exercise-02/README.md#simulate-load-on-the-application)\), Grafana showed you that your application was consuming anywhere between ".002" to ".02" cores. This translates to 2-20 "millicores". That seems like a good range for our CPU request, but to be safe, let's bump the higher-end up to 30 millicores. In addition, Grafana showed that the app consumes about `25`-`35` MB of RAM. Set the following resource limits for your deployment now.
 
 Switch to the **Administrator** view and then navigate to **Workloads &gt; Deployments** in the left-hand bar. Choose the `patient-ui` Deployment, then choose **Actions &gt; Edit Deployment**.
 
-![Deployments](../.gitbook/assets/ocp-deployments.png)
+![Deployments](../.gitbook/assets/ocp-deployments%20%281%29.png)
 
 In the YAML editor, go to line 44. In the section **template &gt; spec &gt; containers**, add the following resource limits into the empty resources. Replace the `resources {}`, and ensure the spacing is correct -- YAML uses strict indentation.
 
-![Limits YAML](../.gitbook/assets/ocp-limits-yaml.png)
+![Limits YAML](../.gitbook/assets/ocp-limits-yaml%20%281%29.png)
 
 ```yaml
              resources:
@@ -31,7 +30,7 @@ In the YAML editor, go to line 44. In the section **template &gt; spec &gt; cont
 
 Verify that the replication controller has been changed by navigating to **Events**
 
-![Resource Limits](../.gitbook/assets/ocp-dc-events.png)
+![Resource Limits](../.gitbook/assets/ocp-dc-events%20%281%29.png)
 
 ## Enable Autoscaler
 
@@ -41,7 +40,7 @@ By default, the autoscaler allows you to scale based on CPU or Memory. The UI al
 
 1. Navigate to **Workloads &gt; Horizontal Pod Autoscalers**, then hit **Create Horizontal Pod Autoscaler**.
 
-![HPA](../.gitbook/assets/ocp-hpa.png)
+![HPA](../.gitbook/assets/ocp-hpa%20%281%29.png)
 
 ```yaml
 apiVersion: autoscaling/v2beta1
@@ -71,11 +70,11 @@ If you're not running the script from the [previous exercise](https://github.com
 
 Check by going to the **Overview** page of **Deployments**.
 
-![Scaled to 1 pod](../.gitbook/assets/ocp-hpa-before.png)
+![Scaled to 1 pod](../.gitbook/assets/ocp-hpa-before%20%281%29.png)
 
 Start simulating load by hitting the page several times, or running the script. You'll see that it starts to scale up:
 
-![Scaled to 4/10 pods](../.gitbook/assets/ocp-hpa-after.png)
+![Scaled to 4/10 pods](../.gitbook/assets/ocp-hpa-after%20%281%29.png)
 
 That's it! You now have a highly available and automatically scaled front-end Node.js application. OpenShift is automatically scaling your application pods since the CPU usage of the pods greatly exceeded `1`% of the resource limit, `30` millicores.
 

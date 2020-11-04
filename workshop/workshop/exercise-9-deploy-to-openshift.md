@@ -10,7 +10,7 @@
      * Authentication type: Image Registry Credentials
      * Registry Server address **`private.uk.icr.io`** in my case
      * Username: **`iamapikey`** 
-     * Password: Go to katacoda and paste **`ibmcloud iam api-key-create contanier-registry`**
+     * Password: Go to IBMCloud Shell and paste **`ibmcloud iam api-key-create contanier-registry`**
 
        Copy the api key and paste it here.
 
